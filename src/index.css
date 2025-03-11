@@ -1,0 +1,45 @@
+/* Reset default margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Ensure the entire page takes up full height */
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Set a nice base font */
+body {
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9; /* Adjust as needed */
+  color: #333; /* Text color */
+}
+
+/* Prevent unwanted scrollbars */
+::-webkit-scrollbar {
+  display: none;
+}
+
+body,
+input,
+button,
+textarea {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Prevent outline on click for better accessibility */
+button,
+input,
+textarea {
+  outline: none;
+  border: none;
+  background: none;
+}
