@@ -31,10 +31,9 @@ export default function Contact() {
   };
 
   const variants = {
-    initial: { y: 200, opacity: 0 },
+    initial: { y: 200 },
     animate: (i) => ({
       y: 0,
-      opacity: 1,
       transition: {
         delay: 0.3 + i,
         duration: 0.85,
@@ -139,9 +138,16 @@ export default function Contact() {
                   </label>
                 </div>
 
-                <button type="submit" className="submit-button">
+                <motion.button
+                  type="submit"
+                  className="submit-button"
+                  initial={{ y: 40 }}
+                  animate="animate"
+                  variants={variants}
+                  custom={0.1}
+                >
                   Submit
-                </button>
+                </motion.button>
               </form>
             ) : (
               <div className="thank-you-container">
