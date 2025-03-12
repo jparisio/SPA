@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import "./Navbar.css";
+import AnimatedLink from "./AnimatedLink.jsx";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -69,15 +70,9 @@ const DropDown = () => {
       style={{ overflow: "hidden" }}
     >
       <div className="dropdown-content">
-        <Link to="/" className="nav-link">
-          HOME
-        </Link>
-        <Link to="/about" className="nav-link">
-          ABOUT
-        </Link>
-        <Link to="/contact" className="nav-link">
-          CONTACT
-        </Link>
+        <AnimatedLink to="/" text="HOME" />
+        <AnimatedLink to="/about" text="ABOUT" />
+        <AnimatedLink to="/contact" text="CONTACT" />
       </div>
     </motion.div>
   );
