@@ -54,12 +54,14 @@ export default function Contact() {
             variants={variants}
             custom={0.02}
           >
-            <h1 className="contact-title">Contact</h1>
+            <h1 className="contact-title">Let's Get in Touch</h1>
             <p className="contact-description">
-              Our ‘One Office’ philosophy means our global team shares
-              languages, methodologies, and extensive international experience
-              to enhance your work.
+              Looking for a reliable aquatic service provider? Request a quote
+              today and let us help you maintain, repair, or enhance your
+              aquatic facility with expert care. Our team is ready to assist you
+              with tailored solutions to meet your needs.
             </p>
+
             <div className="image-container">
               <motion.img src="/test.jpg"></motion.img>
             </div>

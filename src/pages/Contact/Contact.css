@@ -1,54 +1,56 @@
-/* Container for entire contact section */
+/* Ensure section has padding to avoid navbar overlap */
 .contact-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   background-color: #f9f9f9;
-  color: black; /* White text */
+  color: black;
   min-height: 100vh;
-  padding: 2rem;
+  padding: 4rem 2rem;
   box-sizing: border-box;
+  align-items: center;
 }
 
 /* Left side: Title & description */
 .contact-info {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  justify-content: space-between; /* Push elements apart */
+  align-items: flex-start;
+  text-align: left;
+  height: 100%;
+  margin-top: 20px;
 }
 
+/* Adjusted text alignment */
 .contact-title {
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 1rem;
-  position: relative;
   text-align: left;
 }
 
 .contact-description {
-  max-width: 400px;
+  max-width: 100%;
   font-size: 1rem;
   line-height: 1.5;
 }
 
+/* Image Container */
 .image-container {
-  position: relative;
-  margin-top: 2rem;
-  overflow: hidden;
-  width: 100%; /* Ensure it takes full width of parent */
-  max-width: 300px;
-  max-height: 350px;
-  display: flex; /* Ensures the image scales properly */
-  justify-content: center;
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .image-container img {
   object-fit: cover;
   width: 100%;
-  height: auto;
+  height: 100%;
+  max-height: 400px; /* Adjusts height dynamically */
 }
 
 /* Right side: Form container */
@@ -56,9 +58,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100%;
 }
 
-/* The form itself */
+/* Form styling */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -107,6 +110,34 @@
   font-size: 0.75rem;
   line-height: 1.2;
 }
+.checkbox-group input[type="checkbox"] {
+  /* Remove default appearance */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  /* Dimensions and styling */
+  width: 16px;
+  height: 16px;
+  background-color: white; /* White background */
+  border: 1px solid black; /* Solid black border */
+  border-radius: 0; /* Square shape */
+  cursor: pointer;
+  position: relative;
+}
+
+/* Custom checkmark on checked state */
+.checkbox-group input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 4px;
+  width: 4px;
+  height: 8px;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
 
 /* Submit button */
 .submit-button {
@@ -115,16 +146,15 @@
   background-color: black;
   color: white;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 400;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 30%;
-  min-height: 50px;
   border-radius: 40px;
+  cursor: pointer;
+  width: 120px;
+  min-height: 60px;
 }
 
-/* Thank You message container */
+/* Thank You message */
 .thank-you-container {
   display: flex;
   align-items: center;
@@ -133,7 +163,7 @@
 }
 
 .thank-you-card {
-  background-color: #d4ff00; /* A bright green/yellow highlight */
+  background-color: #d4ff00;
   color: #000;
   padding: 1.5rem 2rem;
   border-radius: 8px;
@@ -145,4 +175,17 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
+}
+
+/* RESPONSIVENESS */
+@media screen and (max-width: 913px) {
+  .contact-info {
+    display: none;
+  }
+
+  .contact-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
