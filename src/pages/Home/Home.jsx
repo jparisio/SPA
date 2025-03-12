@@ -1,4 +1,4 @@
-import Curve from "../transitions/Curve.jsx";
+import Curve from "../../transitions/Curve.jsx";
 
 export default function Home() {
   return (
