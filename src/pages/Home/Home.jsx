@@ -12,7 +12,7 @@ export default function Home() {
               y: 0,
               transition: {
                 delay: 0.3,
-                duration: 0.75,
+                duration: 0.85,
                 ease: [0.76, 0, 0.24, 1],
               },
             }}
