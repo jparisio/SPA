@@ -29,8 +29,6 @@ export default function Navbar() {
         MENU
       </div>
 
-      {/* (Optional) Hide these top links if you only want links in the dropdown 
-          Or leave them here for a static nav + an additional dropdown */}
       <motion.div
         className="navbar-links"
         initial={{ opacity: 1 }}
@@ -50,7 +48,7 @@ export default function Navbar() {
 
       {/* Animated Dropdown */}
       <AnimatePresence mode="wait">
-        {isMenuOpen && <DropDown toggleMenu={toggleMenu} />}
+        {isMenuOpen && <DropDown />}
       </AnimatePresence>
     </div>
   );
@@ -66,23 +64,17 @@ const DropDown = () => {
       exit={{ height: 0 }}
       transition={{
         duration: 0.75,
-        ease: [0.76, 0, 0.24, 1], // The custom cubic-bezier
+        ease: [0.76, 0, 0.24, 1],
       }}
-      style={{ overflow: "hidden" }} // Ensures no content spills out
+      style={{ overflow: "hidden" }}
     >
       <div className="dropdown-content">
         <Link to="/" className="nav-link">
           HOME
         </Link>
-        {/* <Link to="/shop" className="nav-link">
-          SHOP
-        </Link> */}
         <Link to="/about" className="nav-link">
           ABOUT
         </Link>
-        {/* <Link to="/lookbook" className="nav-link">
-          LOOKBOOK
-        </Link> */}
         <Link to="/contact" className="nav-link">
           CONTACT
         </Link>
