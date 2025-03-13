@@ -60,6 +60,8 @@ const DropDown = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   // Ref to ensure onAnimationComplete only unlocks once per update
   const animationCompleteCalledRef = useRef(false);
+  // Ref to ignore the very first onAnimationComplete call on mount
+  const isFirstRender = useRef(true);
 
   const imageMap = {
     HOME: "./home.jpg",
@@ -79,9 +81,14 @@ const DropDown = () => {
     }
   };
 
-  // This handler may be called twice (for the exiting and entering image)
+  // This handler may be called twice (for the exiting and entering image).
   // We only want to unlock once.
   const handleAnimationComplete = () => {
+    // On the very first render, ignore the first callback.
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     if (!animationCompleteCalledRef.current) {
       animationCompleteCalledRef.current = true;
       setIsAnimating(false);
@@ -139,7 +146,7 @@ const DropDown = () => {
         <div className="menu-img">
           <AnimatePresence mode="sync">
             <motion.img
-              key={image} //key allows remount
+              key={image} // key forces remount so the animation re-triggers
               src={image}
               initial={{ y: "-100%" }}
               animate={{ y: "0%" }}
