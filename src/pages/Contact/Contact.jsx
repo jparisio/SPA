@@ -63,7 +63,7 @@ export default function Contact() {
             </p>
 
             <div className="image-container">
-              <motion.img src="/test.jpg"></motion.img>
+              <motion.img src="/contact.jpg"></motion.img>
             </div>
           </motion.div>
 

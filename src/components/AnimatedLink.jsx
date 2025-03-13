@@ -24,9 +24,9 @@ const letterVariants = {
 };
 
 // Animated Link Component
-export default function AnimatedLink({ to, text }) {
+export default function AnimatedLink({ to, text, onMouseEnter }) {
   return (
-    <Link to={to} className="nav-link">
+    <Link to={to} className="nav-link" onMouseEnter={onMouseEnter}>
       {text.split("").map((letter, index) => (
         <motion.span
           key={index}

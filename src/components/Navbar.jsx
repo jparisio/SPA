@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import "./Navbar.css";
@@ -56,6 +56,38 @@ export default function Navbar() {
 }
 
 const DropDown = () => {
+  const [image, setImage] = useState("./home.jpg");
+  const [isAnimating, setIsAnimating] = useState(false);
+  // Ref to ensure onAnimationComplete only unlocks once per update
+  const animationCompleteCalledRef = useRef(false);
+
+  const imageMap = {
+    HOME: "./home.jpg",
+    ABOUT: "./about.jpg",
+    CONTACT: "./contact.jpg",
+    GALLERY: "./gallery.jpg",
+    SERVICES: "./services.jpg",
+    CAREERS: "./careers.jpg",
+  };
+
+  const updateImage = (newImage) => {
+    // Only update if we're not mid-animation and the new image is different
+    if (!isAnimating && image !== newImage) {
+      setIsAnimating(true); // Lock updates
+      animationCompleteCalledRef.current = false; // Reset the flag for the new image
+      setImage(newImage);
+    }
+  };
+
+  // This handler may be called twice (for the exiting and entering image)
+  // We only want to unlock once.
+  const handleAnimationComplete = () => {
+    if (!animationCompleteCalledRef.current) {
+      animationCompleteCalledRef.current = true;
+      setIsAnimating(false);
+    }
+  };
+
   return (
     <motion.div
       key="dropdown"
@@ -70,9 +102,57 @@ const DropDown = () => {
       style={{ overflow: "hidden" }}
     >
       <div className="dropdown-content">
-        <AnimatedLink to="/" text="HOME" />
-        <AnimatedLink to="/about" text="ABOUT" />
-        <AnimatedLink to="/contact" text="CONTACT" />
+        <div className="dropdown-links">
+          <AnimatedLink
+            to="/"
+            text="HOME"
+            onMouseEnter={() => updateImage(imageMap.HOME)}
+          />
+          <AnimatedLink
+            to="/about"
+            text="ABOUT"
+            onMouseEnter={() => updateImage(imageMap.ABOUT)}
+          />
+          <AnimatedLink
+            to="/contact"
+            text="CONTACT"
+            onMouseEnter={() => updateImage(imageMap.CONTACT)}
+          />
+        </div>
+        <div className="dropdown-links">
+          <AnimatedLink
+            to="/"
+            text="GALLERY"
+            onMouseEnter={() => updateImage(imageMap.GALLERY)}
+          />
+          <AnimatedLink
+            to="/about"
+            text="SERVICES"
+            onMouseEnter={() => updateImage(imageMap.SERVICES)}
+          />
+          <AnimatedLink
+            to="/contact"
+            text="CAREERS"
+            onMouseEnter={() => updateImage(imageMap.CAREERS)}
+          />
+        </div>
+        <div className="menu-img">
+          <AnimatePresence mode="sync">
+            <motion.img
+              key={image} //key allows remount
+              src={image}
+              initial={{ y: "-100%" }}
+              animate={{ y: "0%" }}
+              exit={{ y: "100%" }}
+              transition={{
+                duration: 0.8,
+                ease: [0.76, 0, 0.24, 1],
+              }}
+              className="image"
+              onAnimationComplete={handleAnimationComplete}
+            />
+          </AnimatePresence>
+        </div>
       </div>
     </motion.div>
   );
