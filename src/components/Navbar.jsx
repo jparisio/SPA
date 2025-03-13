@@ -128,19 +128,22 @@ const DropDown = () => {
         </div>
         <div className="dropdown-links">
           <AnimatedLink
-            to="/"
+            to="/gallery"
             text="GALLERY"
             onMouseEnter={() => updateImage(imageMap.GALLERY)}
+            reverse={true}
           />
           <AnimatedLink
             to="/about"
             text="SERVICES"
             onMouseEnter={() => updateImage(imageMap.SERVICES)}
+            reverse={true}
           />
           <AnimatedLink
             to="/contact"
             text="CAREERS"
             onMouseEnter={() => updateImage(imageMap.CAREERS)}
+            reverse={true}
           />
         </div>
         <div className="menu-img">

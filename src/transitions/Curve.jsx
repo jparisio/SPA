@@ -32,6 +32,7 @@ export default function Curve({ children }) {
     "/": "SPA",
     "/about": "ABOUT",
     "/contact": "CONTACT",
+    "/gallery": "GALLERY",
   };
 
   const text = {

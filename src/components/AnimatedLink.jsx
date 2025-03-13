@@ -24,7 +24,12 @@ const letterVariants = {
 };
 
 // Animated Link Component
-export default function AnimatedLink({ to, text, onMouseEnter }) {
+export default function AnimatedLink({
+  to,
+  text,
+  onMouseEnter,
+  reverse = false,
+}) {
   return (
     <Link to={to} className="nav-link" onMouseEnter={onMouseEnter}>
       {text.split("").map((letter, index) => (
@@ -35,7 +40,7 @@ export default function AnimatedLink({ to, text, onMouseEnter }) {
           initial="initial"
           animate="animate"
           exit="exit"
-          custom={index}
+          custom={reverse ? text.length - index : index}
         >
           {letter}
         </motion.span>

@@ -8,6 +8,7 @@ import { AnimatePresence } from "framer-motion";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
+import Gallery from "./pages/Gallery/Gallery";
 import Navbar from "./components/Navbar";
 
 import "./App.css";
@@ -31,6 +32,7 @@ function AnimatedRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/gallery" element={<Gallery />} />
       </Routes>
     </AnimatePresence>
   );
