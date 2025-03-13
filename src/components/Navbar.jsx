@@ -58,6 +58,7 @@ export default function Navbar() {
 const DropDown = () => {
   const [image, setImage] = useState("./home.jpg");
   const [isAnimating, setIsAnimating] = useState(false);
+  const [queue, setQueue] = useState(null);
   // Ref to ensure onAnimationComplete only unlocks once per update
   const animationCompleteCalledRef = useRef(false);
   // Ref to ignore the very first onAnimationComplete call on mount
@@ -78,8 +79,17 @@ const DropDown = () => {
       setIsAnimating(true); // Lock updates
       animationCompleteCalledRef.current = false; // Reset the flag for the new image
       setImage(newImage);
+    } else if (image !== newImage) {
+      setQueue(newImage);
     }
   };
+
+  useEffect(() => {
+    if (queue != image && !isAnimating && queue != null) {
+      updateImage(queue);
+      setQueue(null);
+    }
+  }, [queue, isAnimating]);
 
   // This handler may be called twice (for the exiting and entering image).
   // We only want to unlock once.
