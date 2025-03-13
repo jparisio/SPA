@@ -57,12 +57,10 @@ export default function Navbar() {
 
 const DropDown = () => {
   const [image, setImage] = useState("./home.jpg");
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(true);
   const [queue, setQueue] = useState(null);
   // Ref to ensure onAnimationComplete only unlocks once per update
   const animationCompleteCalledRef = useRef(false);
-  // Ref to ignore the very first onAnimationComplete call on mount
-  const isFirstRender = useRef(true);
 
   const imageMap = {
     HOME: "./home.jpg",
@@ -94,11 +92,6 @@ const DropDown = () => {
   // This handler may be called twice (for the exiting and entering image).
   // We only want to unlock once.
   const handleAnimationComplete = () => {
-    // On the very first render, ignore the first callback.
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
     if (!animationCompleteCalledRef.current) {
       animationCompleteCalledRef.current = true;
       setIsAnimating(false);
