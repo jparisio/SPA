@@ -8,7 +8,6 @@ export default function Contact() {
     name: "",
     company: "",
     email: "",
-    country: "Ukraine",
     message: "",
     agree: false,
   });
@@ -23,11 +22,24 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Normally you would send formData to a server here.
-    // For demo purposes, we just mark as submitted.
-    setSubmitted(true);
+
+    const response = await fetch("https://formspree.io/f/mjkyvqdr", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      }),
+    });
+
+    if (response.ok) {
+      setSubmitted(true);
+    } else {
+      console.error("Email sending failed");
+    }
   };
 
   const variants = {
@@ -153,10 +165,14 @@ export default function Contact() {
               </form>
             ) : (
               <div className="thank-you-container">
-                <div className="thank-you-card">
+                <motion.div
+                  className="thank-you-card"
+                  initial={{ scale: 0.8 }}
+                  animate={{ scale: 1 }}
+                >
                   <span className="thank-you-title">Thank you!</span>
                   <span>Your request was sent</span>
-                </div>
+                </motion.div>
               </div>
             )}
           </motion.div>
