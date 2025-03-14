@@ -1,0 +1,32 @@
+.gallery-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  height: 200vh;
+  width: 100%;
+}
+
+.scroll-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  height: 100vh;
+  position: fixed;
+  top: 5%;
+}
+
+.gallery-image-container {
+  background-color: black;
+  height: 425px;
+  width: 315px;
+  overflow: hidden;
+}
+
+.gallery-image-container img {
+  height: 120%;
+  width: 220%;
+  object-fit: cover;
+}
